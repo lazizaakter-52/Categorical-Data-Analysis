@@ -1,0 +1,4762 @@
+\begin{quote}
+\emph{An Assignment Report on}
+\end{quote}
+
+Course Code : STAT 4104
+
+\begin{quote}
+Course Title : Categorical Data Analysis
+
+\includegraphics[width=1.10234in,height=0.88666in]{media/image1.jpg}
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4676}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4675}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Submitted By:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Supervised By:}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Laziza Akter & Dr. Md. Siddikur Rahman \\
+ID: 12110027 & Associate Professor \\
+Reg: 000015890 & Department of Statistics \\
+Session: 2021-22
+
+Department of Statistics
+
+Begum Rokeya University, Rangpur & Begum Rokeya University, Rangpur \\
+\end{longtable}
+}
+
+Department of Statistics
+
+Begum Rokeya University, Rangpur
+
+\begin{quote}
+MAY-2026
+\end{quote}
+
+\textbf{Contents}
+
+\hyperref[question-no.1]{\textbf{1 Question No.1}
+\hyperref[question-no.1]{\textbf{1}}}
+
+\hyperref[eda]{1.1 EDA \hyperref[eda]{1}}
+
+\hyperref[basic-eda-interpretation]{1.1.1 Basic EDA Interpretation
+\hyperref[basic-eda-interpretation]{3}}
+
+\hyperref[association-and-crosstab]{1.2 Association and Crosstab
+\hyperref[association-and-crosstab]{4}}
+
+\hyperref[does-pollution-level-affect-lung-disease]{1.3 Does Pollution
+Level Affect Lung Disease?
+\hyperref[does-pollution-level-affect-lung-disease]{4}}
+
+\hyperref[statistical-testing]{1.4 Statistical Testing
+\hyperref[statistical-testing]{5}}
+
+\hyperref[correlation-and-interpret]{1.5 correlation and interpret
+\hyperref[correlation-and-interpret]{6}}
+
+\hyperref[logistic-regression]{1.6 Logistic Regression
+\hyperref[logistic-regression]{7}}
+
+\hyperref[modeling]{1.7 modeling \hyperref[modeling]{8}}
+
+\hyperref[model-evaluation]{1.8 Model Evaluation
+\hyperref[model-evaluation]{9}}
+
+\hyperref[question-no.2]{\textbf{2 Question No.2}
+\hyperref[question-no.2]{\textbf{11}}}
+
+\hyperref[question-no.3]{\textbf{3 Question No.3}
+\hyperref[question-no.3]{\textbf{12}}}
+
+\hyperref[question-no.4]{\textbf{4 Question No.4}
+\hyperref[question-no.4]{\textbf{14}}}
+
+\hyperref[post-hoc-fisher-exact-test-results]{4.0.1 Post-hoc Fisher
+Exact Test Results \hyperref[post-hoc-fisher-exact-test-results]{14}}
+
+\hyperref[question-no.5]{\textbf{5 Question No.5}
+\hyperref[question-no.5]{\textbf{15}}}
+
+\hyperref[question-no.6]{\textbf{6 Question No.6}
+\hyperref[question-no.6]{\textbf{18}}}
+
+\hyperref[question-no.7]{\textbf{7 Question No.7}
+\hyperref[question-no.7]{\textbf{20}}}
+
+\hyperref[question-no.8]{\textbf{8 Question No.8}
+\hyperref[question-no.8]{\textbf{22}}}
+
+\hyperref[question-no.9]{\textbf{9 Question No.9}
+\hyperref[question-no.9]{\textbf{25}}}
+
+\hyperref[question-no.10]{\textbf{10 Question No.10}
+\hyperref[question-no.10]{\textbf{27}}}
+
+\hyperref[question-no.11]{\textbf{11 Question NO.11}
+\hyperref[question-no.11]{\textbf{29}}}
+
+\hyperref[python-code]{\textbf{12 Python Code}
+\hyperref[python-code]{\textbf{31}}}
+
+\hyperref[code-for-question-2]{12.1 Code for Question 2
+\hyperref[code-for-question-2]{31}}
+
+\hyperref[code-for-question-3]{12.2 Code for Question 3
+\hyperref[code-for-question-3]{33}}
+
+\hyperref[code-for-question-4]{12.3 Code for Question 4
+\hyperref[code-for-question-4]{35}}
+
+\hyperref[code-for-question-5]{12.4 Code for Question 5
+\hyperref[code-for-question-5]{37}}
+
+\hyperref[code-for-question-6]{12.5 Code for Question 6
+\hyperref[code-for-question-6]{39}}
+
+\hyperref[code-for-question-7]{12.6 Code for Question 7
+\hyperref[code-for-question-7]{42}}
+
+\hyperref[code-for-question-8]{12.7 Code for Question 8
+\hyperref[code-for-question-8]{45}}
+
+\hyperref[code-for-question-9]{12.8 Code for Question 9
+\hyperref[code-for-question-9]{47}}
+
+\hyperref[code-for-question-10]{12.9 Code for Question 10
+\hyperref[code-for-question-10]{49}}
+
+12.10Code for Question 11 . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . 52
+
+\textbf{List of Figures}
+
+1.1 Age Distribution showing approximately normal pattern. . . . . . . .
+. . . . . . 2
+
+3.1 Chi-square Contribution Heatmap showing association between maternal
+age groups and anemia levels in children . . . . . . . . . . . . . . . .
+. . . . . . . . 13
+
+\begin{quote}
+iii
+\end{quote}
+
+\textbf{List of Tables}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.9714}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.0286}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+1.1 Sample Dataset . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . .
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+1
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1.2 Data Information . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1
+\end{quote}
+\end{minipage} \\
+1.3 Descriptive Statistics of Dataset Variables . . . . . . . . . . . .
+. . . . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2
+\end{quote}
+\end{minipage} \\
+1.4 Summary of EDA Results . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3
+\end{quote}
+\end{minipage} \\
+1.5 Contingency Table and Chi-Square Test Results . . . . . . . . . . .
+. . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+4
+\end{quote}
+\end{minipage} \\
+1.6 Association: Pollution vs Lung Disease . . . . . . . . . . . . . . .
+. . . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5
+\end{quote}
+\end{minipage} \\
+1.7 Chi-square Test: Smoking vs Lung Disease . . . . . . . . . . . . . .
+. . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5
+\end{quote}
+\end{minipage} \\
+1.8 Chi-square Test, Fisher's Exact Test, and Odds Ratio Results . . . .
+. . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+6
+\end{quote}
+\end{minipage} \\
+1.9 Correlation Results and Causality Explanation . . . . . . . . . . .
+. . . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+7
+\end{quote}
+\end{minipage} \\
+1.10 Logistic Regression Results for Lung Disease . . . . . . . . . . .
+. . . . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+7
+\end{quote}
+\end{minipage} \\
+1.11 Logistic Regression Results with Interaction Term (Smoking ×
+Pollution) . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+8
+\end{quote}
+\end{minipage} \\
+1.12 Model Evaluation Results . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+9
+\end{quote}
+\end{minipage} \\
+2.1 One-way ANOVA Results for Exercise Programs . . . . . . . . . . . .
+. . . . . . & 11 \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+3.1 Expected Frequencies Table of Children's Anemia Levels by Maternal
+Age Groups 12
+
+4.1 Contingency table of disease status across different drugs . . . . .
+. . . . . . . . 14} \\
+\end{longtable}
+}
+
+\begin{quote}
+iv
+\end{quote}
+
+\textbf{CHAPTER 1}
+
+\section{Question No.1}\label{question-no.1}
+
+\subsubsection{1.1 EDA}\label{eda}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Summarize the distribution of Age. Is it normally distributed or
+  skewed?
+\item
+  What proportion of individuals are smokers vs non-smokers?
+\item
+  Which income group has the highest frequency?
+\item
+  What percentage of individuals are exposed to high pollution?
+\item
+  What is the overall prevalence of lung disease?
+\end{enumerate}
+
+\subparagraph{Answer All the EDA
+Question}\label{answer-all-the-eda-question}
+
+\begin{quote}
+Table 1.1: Sample Dataset
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0539}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1269}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.0705}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1217}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1314}}
+  >{\centering\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1720}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+ID
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Smoking
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Age
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Income
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pollution
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+LungDisease
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1
+\end{quote}
+\end{minipage} & Yes & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+36
+\end{quote}
+\end{minipage} & Low & High & Yes \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2
+\end{quote}
+\end{minipage} & No & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+28
+\end{quote}
+\end{minipage} & Low & Low & No \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3
+\end{quote}
+\end{minipage} & No & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+52
+\end{quote}
+\end{minipage} & Medium & High & No \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+4
+\end{quote}
+\end{minipage} & No & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+39
+\end{quote}
+\end{minipage} & High & High & No \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5
+\end{quote}
+\end{minipage} & Yes & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+32
+\end{quote}
+\end{minipage} & Low & Low & Yes \\
+\end{longtable}
+}
+
+\begin{quote}
+Table 1.2: Data Information
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1716}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2078}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.0975}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Column
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Non-Null Count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+Dtype
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ID & 500 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+int64
+\end{quote}
+\end{minipage} \\
+Smoking & 500 & object \\
+Age & 500 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+int64
+\end{quote}
+\end{minipage} \\
+Income & 500 & object \\
+Pollution & 500 & object \\
+LungDisease & 500 & object \\
+\end{longtable}
+}
+
+\begin{quote}
+Table 1.3: Descriptive Statistics of Dataset Variables
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1229}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1599}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1301}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1599}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1145}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1359}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1767}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Statistic}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{ID}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Smoking}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Age}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Income}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Pollution}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{LungDisease}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Count & 500.000000 & 500 & 500.000000 & 500 & 500 & 500 \\
+Unique & -- & 2 & -- & 3 & 2 & 2 \\
+Top & -- & No & -- & Low & High & Yes \\
+Freq & -- & 293 & -- & 204 & 352 & 264 \\
+Mean & 250.500000 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+43.904000
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+Std & 144.481833 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+14.604841
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+Min & 1.000000 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+20.000000
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+25\% & 125.750000 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+30.750000
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+50\% & 250.500000 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+45.000000
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+75\% & 375.250000 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+56.000000
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+Max & 500.000000 & -- & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+69.000000
+\end{quote}
+\end{minipage} & -- & -- & -- \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{Skewness of Age:} 0.012141455267137275
+
+Figure 1.1: Age Distribution showing approximately normal pattern.
+
+\includegraphics[width=5.35435in,height=3.44495in]{media/image2.jpg}
+
+\textbf{Note:} Age is approximately normal.
+
+Table 1.4: Summary of EDA Results
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1569}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2283}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3300}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5583} + 2\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Smoking Analysis}
+\end{quote}
+\end{minipage}} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Category} & \textbf{Count} & \textbf{Percentage (\%)} \\
+No & 293 & 58.6 \\
+Yes & 207 & 41.4 \\
+&
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5583} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Income Distribution}
+\end{quote}
+\end{minipage}} \\
+\textbf{Group} & \textbf{Count} & \textbf{Highest Group} \\
+Low & 204 & \multirow{3}{=}{} \\
+Medium & 197 \\
+High & 99 \\
+&
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5583} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pollution Exposure}
+\end{quote}
+\end{minipage}} \\
+\textbf{Level} & \textbf{Percentage (\%)} & \textbf{High Exposure
+(\%)} \\
+High & 70.4 & 70.4 \\
+Low & 29.6 & -- \\
+&
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5583} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Lung Disease Prevalence}
+\end{quote}
+\end{minipage}} \\
+\textbf{Condition} & \textbf{Percentage (\%)} & \textbf{Overall
+Prevalence (\%)} \\
+Yes & 52.8 & 52.8 \\
+No & 47.2 & -- \\
+\end{longtable}
+}
+
+\paragraph{1.1.1 Basic EDA
+Interpretation}\label{basic-eda-interpretation}
+
+i) Distribution of Age
+
+The average age of the individuals in the dataset is 43.9 years with a
+standard deviation of 14.6 years. The minimum age is 20 years and the
+maximum age is 69 years. The skewness value of Age is 0.012, which is
+very close to zero, indicating that the age distribution is
+approximately normal and symmetric. Therefore, there is no strong
+evidence of skewness in the age variable.
+
+ii) Proportion of Smokers vs Non-Smokers
+
+The dataset contains 293 non-smokers (58.6\%) and 207 smokers (41.4\%).
+This indicates that non-smokers form the majority of the study
+population. However, a substantial proportion of individuals are
+smokers, which may increase the risk of lung disease within the
+population.
+
+iii) Income Group with the Highest Frequency
+
+Among the three income categories, the Low income group has the highest
+frequency with 204 individuals. The Medium income group contains 197
+individuals, while the High income group contains only 99 individuals.
+This shows that most participants in the dataset belong to the
+low-income category.
+
+iv) Percentage of Individuals Exposed to High Pollution
+
+The analysis shows that 70.4\% of individuals are exposed to high
+pollution levels, whereas only 29.6\% are exposed to low pollution
+levels. This indicates that the majority of the population in the
+dataset lives in highly polluted environments, which may contribute to
+respiratory and lung-related diseases.
+
+v) Overall Prevalence of Lung Disease
+
+The prevalence analysis reveals that 52.8\% of individuals have lung
+disease, while 47.2\% do not have lung disease. This means that more
+than half of the study population is affected by lung disease,
+suggesting that lung disease is relatively common in this dataset.
+
+\subsubsection{1.2 Association and
+Crosstab}\label{association-and-crosstab}
+
+Association \& Crosstab
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Is there an association between Smoking and Lung Disease?
+\item
+  Interpret using a contingency table.
+\end{enumerate}
+
+\begin{quote}
+Table 1.5: Contingency Table and Chi-Square Test Results
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2254}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2237}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5509}}@{}}
+\toprule\noalign{}
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Contingency Table}
+\end{minipage}} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Smoking}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{LungDisease: No}
+\end{quote}
+\end{minipage} & \textbf{LungDisease: Yes} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+No
+\end{quote}
+\end{minipage} & 184 & 109 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Yes
+\end{quote}
+\end{minipage} & 52 & 155 \\
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\textbf{Chi-Square Test Results}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Statistic}
+\end{quote}
+\end{minipage} & \textbf{Value} & \textbf{Description} \\
+& & \includegraphics[width=7.22333in,height=0.65in]{media/image3.png} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Interpretation: There is a significant association between
+Smoking and Lung Disease.}
+\end{quote}
+\end{minipage}} \\
+\end{longtable}
+}
+
+\subsubsection{1.3 Does Pollution Level Affect Lung
+Disease?}\label{does-pollution-level-affect-lung-disease}
+
+i) Compare Lung Disease Prevalence Across Income Groups ii) Which Factor
+Appears to Have the Strongest Relationship with Lung Disease?
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2184}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2164}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5652}}@{}}
+\toprule\noalign{}
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{Contingency Table}
+\end{quote}
+\end{minipage}} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Pollution Level} & \textbf{LungDisease: No} &
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{LungDisease: Yes}
+\end{quote}
+\end{minipage} \\
+High & 136 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+216
+\end{quote}
+\end{minipage} \\
+Low & 100 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+48
+\end{quote}
+\end{minipage} \\
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Chi-Square Test Results}
+\end{quote}
+\end{minipage}} \\
+\textbf{Statistic} & \textbf{Value} &
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Description}
+\end{quote}
+\end{minipage} \\
+Chi-square Statistic & 33.8426 &
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+Measure of association strength
+\end{quote}
+\end{minipage} \\
+Degrees of Freedom & 1 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Number of independent comparisons
+\end{quote}
+\end{minipage} \\
+P-value & 5\emph{.}9757 × 10\textsuperscript{−9} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Probability of observing such result by chance
+\end{quote}
+\end{minipage} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\textbf{Interpretation: There is a significant association between
+Pollution level and Lung Disease}} \\
+\end{longtable}
+}
+
+\begin{quote}
+Table 1.6: Association: Pollution vs Lung Disease
+\end{quote}
+
+\subsubsection{1.4 Statistical Testing}\label{statistical-testing}
+
+i) Perform a Chi-square Test for: Smoking vs Lung Disease and Pollution
+vs Lung Disease ii) When Should You Use Fisher's Exact Test Instead of
+Chi-squared? iii) Calculate and Interpret the Odds Ratio for Smoking and
+Lung Disease
+
+\subparagraph{Answer All the Testical Question
+i)}\label{answer-all-the-testical-question-i}
+
+\begin{quote}
+Table 1.7: Chi-square Test: Smoking vs Lung Disease
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2254}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2237}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5509}}@{}}
+\toprule\noalign{}
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Contingency Table}
+\end{minipage}} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Smoking}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{LungDisease: No}
+\end{quote}
+\end{minipage} & \textbf{LungDisease: Yes} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+No
+\end{quote}
+\end{minipage} & 184 & 109 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Yes
+\end{quote}
+\end{minipage} & 52 & 155 \\
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\textbf{Chi-Square Test Results}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Statistic}
+\end{quote}
+\end{minipage} & \textbf{Value} & \textbf{Description} \\
+& & \includegraphics[width=7.22333in,height=0.65in]{media/image4.png} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Interpretation: There is a significant association between
+Smoking and Lung Disease.}
+\end{quote}
+\end{minipage}} \\
+\end{longtable}
+}
+
+\begin{quote}
+2,3)
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2184}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2164}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5652}}@{}}
+\toprule\noalign{}
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{Chi-square Test: Pollution vs Lung Disease}
+\end{quote}
+\end{minipage}} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pollution Level}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{LungDisease: No}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{LungDisease: Yes}
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+High
+\end{quote}
+\end{minipage} & 136 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+216
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Low
+\end{quote}
+\end{minipage} & 100 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+48
+\end{quote}
+\end{minipage} \\
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Chi-Square Test Results}
+\end{quote}
+\end{minipage}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Statistic}
+\end{quote}
+\end{minipage} & \textbf{Value} &
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Description}
+\end{quote}
+\end{minipage} \\
+& & \includegraphics[width=7.46667in,height=0.65in]{media/image5.png} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Interpretation: There is a significant association between
+Pollution level and Lung Disease}
+\end{quote}
+\end{minipage}} \\
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Fisher's Exact Test}
+\end{quote}
+\end{minipage}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Statistic}
+\end{quote}
+\end{minipage} & \textbf{Value} &
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Description}
+\end{quote}
+\end{minipage} \\
+& &
+\includegraphics[width=7.46667in,height=0.40333in]{media/image6.png} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Fisher's Exact Test is generally used when:}
+\end{quote}
+\end{minipage}} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-- Sample size is small
+\end{quote}
+\end{minipage}} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-- Expected frequencies are less than 5
+\end{quote}
+\end{minipage}} \\
+\multicolumn{3}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-- The contingency table is 2x2
+\end{quote}
+\end{minipage}} \\
+\multicolumn{3}{@{}>{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{1.0000} + 4\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Odds Ratio: Smoking vs Lung Disease}
+\end{quote}
+\end{minipage}} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Odds Ratio
+\end{quote}
+\end{minipage} & 5.0318 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Smokers have higher odds of developing lung disease
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+Table 1.8: Chi-square Test, Fisher's Exact Test, and Odds Ratio Results
+
+\subsubsection{1.5 correlation and
+interpret}\label{correlation-and-interpret}
+
+\begin{quote}
+Table 1.9: Correlation Results and Causality Explanation
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2723}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7277}}@{}}
+\toprule\noalign{}
+\multicolumn{2}{@{}>{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+\begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{Correlation Results}
+\end{quote}
+\end{minipage}} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Smoking vs Lung Disease & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.3717
+\end{quote}
+\end{minipage} \\
+Age vs Lung Disease & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.2497
+\end{quote}
+\end{minipage} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+\textbf{Interpretation:}} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+Positive correlation: Smoking is associated with higher lung disease
+risk.} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+Older age is associated with higher lung disease risk.} \\
+\multicolumn{2}{@{}>{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+\textbf{Causality Explanation}
+\end{quote}
+\end{minipage}} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{1.0000} + 2\tabcolsep}@{}}{%
+Correlation is not sufficient for causal inference because:} \\
+1. & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+It only measures association, not cause-effect relationship.
+\end{quote}
+\end{minipage} \\
+2. & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+There may be confounding variables (e.g., pollution, lifestyle).
+\end{quote}
+\end{minipage} \\
+3. & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Direction of effect is unknown (A may influence B or vice versa).
+\end{quote}
+\end{minipage} \\
+4. & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Spurious correlations may exist due to random chance.
+\end{quote}
+\end{minipage} \\
+5. & Proper causal inference requires controlled experiments or advanced
+models \\
+\end{longtable}
+}
+
+\subsubsection{1.6 Logistic Regression}\label{logistic-regression}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Fit a logistic regression model: LungDisease ∼ Smoking + Age +
+  Pollution + Income
+\item
+  Which variables are statistically significant predictors?
+\item
+  Interpret the odds ratio of Smoking.
+\item
+  What happens to the effect of Smoking after adjusting for Pollution?
+\end{enumerate}
+
+\subparagraph{Answer All the logistics
+Question}\label{answer-all-the-logistics-question}
+
+\begin{quote}
+Table 1.10: Logistic Regression Results for Lung Disease
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2214}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1177}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1248}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1046}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1128}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1215}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1215}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Variable}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{coef}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{z}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\emph{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025{]}}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+const & -2.1940 & 0.425 & -5.164 & 0.000 & -3.027 & -1.361 \\
+Smoking & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.7022
+\end{quote}
+\end{minipage} & 0.218 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+7.801
+\end{quote}
+\end{minipage} & 0.000 & 1.275 & 2.130 \\
+Age & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.0399
+\end{quote}
+\end{minipage} & 0.007 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5.455
+\end{quote}
+\end{minipage} & 0.000 & 0.026 & 0.054 \\
+Income Low & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.4396
+\end{quote}
+\end{minipage} & 0.285 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.544
+\end{quote}
+\end{minipage} & 0.123 & -0.119 & 0.998 \\
+Income Medium & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.2201
+\end{quote}
+\end{minipage} & 0.285 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.773
+\end{quote}
+\end{minipage} & 0.440 & -0.338 & 0.779 \\
+Pollution Low & -1.3027 & 0.235 & -5.533 & 0.000 & -1.764 & -0.841 \\
+\end{longtable}
+}
+
+\textbf{Model Summary:}
+
+Dependent Variable: LungDisease
+
+No. of Observations: 500
+
+Pseudo R-squared: 0.2005
+
+Log-Likelihood: -276.47
+
+LLR p-value: 3.499×10\textsuperscript{−28}
+
+\begin{quote}
+\textbf{Interpretation:}
+\end{quote}
+
+\begin{itemize}
+\item
+  \textbf{Smoking} and \textbf{Age} are statistically significant
+  predictors of lung disease (p \emph{\textless{}} 0.001).
+\item
+  \textbf{Pollution Low} has a significant negative coefficient,
+  indicating lower pollution reduces lung disease risk.
+\item
+  \textbf{Income Low} and \textbf{Income Medium} are not significant
+  predictors (p \emph{\textgreater{}} 0.05). • The positive coefficient
+  for Smoking (1.7022) implies smokers have higher odds of developing
+  lung disease.
+\item
+  After adjusting for Pollution, the effect of Smoking remains strong
+  and significant, suggesting an independent influence.
+\end{itemize}
+
+\subsubsection{1.7 modeling}\label{modeling}
+
+\begin{quote}
+Table 1.11: Logistic Regression Results with Interaction Term (Smoking ×
+Pollution)
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2479}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1177}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1248}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1046}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1128}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1215}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1215}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Variable}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{coef}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{z}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\emph{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025{]}}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+const & -2.1285 & 0.430 & -4.953 & 0.000 & -2.971 & -1.286 \\
+Smoking & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.5778
+\end{quote}
+\end{minipage} & 0.257 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+6.130
+\end{quote}
+\end{minipage} & 0.000 & 1.073 & 2.082 \\
+Age & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.0393
+\end{quote}
+\end{minipage} & 0.007 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5.352
+\end{quote}
+\end{minipage} & 0.000 & 0.025 & 0.054 \\
+Smoking Pollution & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.4217
+\end{quote}
+\end{minipage} & 0.483 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.874
+\end{quote}
+\end{minipage} & 0.382 & -0.524 & 1.367 \\
+Pollution Low & -1.4883 & 0.323 & -4.606 & 0.000 & -2.122 & -0.855 \\
+Income Low & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.4465
+\end{quote}
+\end{minipage} & 0.285 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.567
+\end{quote}
+\end{minipage} & 0.117 & -0.112 & 1.005 \\
+Income Medium & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.2214
+\end{quote}
+\end{minipage} & 0.285 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.777
+\end{quote}
+\end{minipage} & 0.437 & -0.337 & 0.780 \\
+\end{longtable}
+}
+
+\textbf{Model Summary:}
+
+Dependent Variable: LungDisease
+
+No. of Observations: 500
+
+Pseudo R-squared: 0.2016
+
+Log-Likelihood: -276.09
+
+LLR p-value: 1.341×10\textsuperscript{−27}
+
+\begin{quote}
+\textbf{Odds Ratios:}
+
+\textbf{Interpretation:}
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2465}}
+  >{\centering\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1851}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Variable}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Odds Ratio}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+const & 0.1190 \\
+Smoking & 4.8445 \\
+Age & 1.0400 \\
+Smoking Pollution & 1.5245 \\
+Pollution Low & 0.2258 \\
+Income Low & 1.5629 \\
+Income Medium & 1.2478 \\
+\end{longtable}
+}
+
+\begin{itemize}
+\item
+  \textbf{Smoking}, \textbf{Age}, and \textbf{Pollution Low} are
+  statistically significant predictors (p \emph{\textless{}} 0.001).
+\item
+  The interaction term \textbf{Smoking} × \textbf{Pollution} is not
+  significant (p = 0.382), indicating pollution does not amplify smoking
+  risk significantly.
+\item
+  The positive coefficient for Smoking (1.5778) implies smokers have
+  higher odds of developing lung disease.
+\item
+  The negative coefficient for Pollution Low (-1.4883) suggests lower
+  pollution reduces lung disease risk.
+\item
+  Odds ratio for Smoking (4.8445) means smokers are about 4.8 times more
+  likely to develop lung disease compared to non-smokers.
+\end{itemize}
+
+\subsubsection{1.8 Model Evaluation}\label{model-evaluation}
+
+\begin{quote}
+Table 1.12: Model Evaluation Results
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1613}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1105}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Metric}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Value}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+AUC Score & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.7882
+\end{quote}
+\end{minipage} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2717} + 2\tabcolsep}@{}}{%
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Confusion Matrix}
+\end{quote}
+\end{minipage}} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2717} + 2\tabcolsep}@{}}{%
+153 83
+
+59 205} \\
+Accuracy & 0.716 \\
+Sensitivity & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.7765
+\end{quote}
+\end{minipage} \\
+Specificity & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.6483
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+\item
+  The model achieved an AUC score of 0.7882, indicating good
+  discriminatory power.
+\item
+  Accuracy of 71.6\% shows overall correct classification performance.
+\item
+  Sensitivity (77.65\%) suggests the model effectively identifies
+  positive cases (lung disease).
+\item
+  Specificity (64.83\%) indicates moderate ability to correctly identify
+  negative cases.
+\item
+  Overall, the model performs reasonably well, with better sensitivity
+  than specificity.
+\end{itemize}
+
+\textbf{CHAPTER 2}
+
+\section{Question No.2}\label{question-no.2}
+
+\subparagraph{One Way Anova}\label{one-way-anova}
+
+\begin{quote}
+Table 2.1: One-way ANOVA Results for Exercise Programs
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0868}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0431}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0866}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1546}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1297} + 2\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Statistic}
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Value}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+&
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1297} + 2\tabcolsep}}{%
+F-statistic} & 9.0202 \\
+&
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1297} + 2\tabcolsep}}{%
+p-value} & 0.0002755 \\
+\multicolumn{4}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3712} + 6\tabcolsep}@{}}{%
+\textbf{Group Means (Weight Loss in Pounds)}} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1299} + 2\tabcolsep}}{%
+Program A} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2412} + 2\tabcolsep}@{}}{%
+4.9742} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1299} + 2\tabcolsep}}{%
+Program B} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2412} + 2\tabcolsep}@{}}{%
+5.9667} \\
+\multicolumn{2}{@{}>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1299} + 2\tabcolsep}}{%
+Program C} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2412} + 2\tabcolsep}@{}}{%
+4.8168} \\
+\end{longtable}
+}
+
+\textbf{Conclusion:} There is a statistically significant difference in
+mean weight loss among the three exercise programs (p \emph{\textless{}}
+0.001). Program B shows the highest average weight loss, indicating it
+may be more effective compared to Programs A and C.
+
+\textbf{CHAPTER 3}
+
+\section{Question No.3}\label{question-no.3}
+
+\textbf{Contingency Table:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3136}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0882}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1531}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1781}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0982}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Anemia level}
+
+\textbf{Age in 5-year groups}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Mild}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Moderate}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Not anemic}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Severe}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+15-19
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+157
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+177
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+182
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+10
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+20-24
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+630
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+748
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+922
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+39
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25-29
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+996
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1094
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1565
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+49
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+30-34
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+852
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+928
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1196
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+70
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+35-39
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+636
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+667
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+916
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+40
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+40-44
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+230
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+271
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+383
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+10
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+45-49
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+93
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+89
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+173
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+13
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\begin{quote}
+Chi-square Statistic = 45\emph{.}895
+
+Degrees of Freedom = 18
+
+P-value = 0\emph{.}00031
+\end{quote}
+
+\subparagraph{Reject H0}\label{reject-h0}
+
+There is a significant association between age group and anemia level.
+
+\textbf{Expected Frequencies:}
+
+\begin{quote}
+Table 3.1: Expected Frequencies Table of Children's Anemia Levels by
+Maternal Age Groups
+\end{quote}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2978}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1663}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1663}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1776}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1367}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Anemia level}
+
+\textbf{Age in 5-year groups}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Mild}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Moderate}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Not anemic}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Severe}
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+15-19
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+143.913216
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+159.129415
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+213.707521
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+9.249848
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+20-24
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+639.948691
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+707.611602
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+950.307780
+\end{quote}
+\end{minipage} & 41.131928 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25-29
+\end{quote}
+\end{minipage} & 1013.411693 & 1120.561510 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1504.890987
+\end{quote}
+\end{minipage} & 65.135810 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+30-34
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+833.383374
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+921.498477
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1237.553441
+\end{quote}
+\end{minipage} & 53.564708 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+35-39
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+618.060749
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+683.409409
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+917.804735
+\end{quote}
+\end{minipage} & 39.725107 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+40-44
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+244.597747
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+270.459501
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+363.221529
+\end{quote}
+\end{minipage} & 15.721224 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+45-49
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+100.684531
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+111.330085
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+149.514007
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+6.471376
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{Chi-square Test Results}\label{chi-square-test-results}
+
+\begin{quote}
+Chi-square : 45\emph{.}8950569178203
+
+p-value : 0\emph{.}00030731153928803393
+
+df : 18
+\end{quote}
+
+\textbf{Conclusion:} Significant association exists.
+
+\subparagraph{Chi-square Contribution
+Analysis}\label{chi-square-contribution-analysis}
+
+Below is the Chi-square Contribution Heatmap illustrating the
+relationship between maternal age groups and children's anemia levels.
+
+Figure 3.1: Chi-square Contribution Heatmap showing association between
+maternal age groups and anemia levels in children
+
+\begin{quote}
+\includegraphics[width=6.02388in,height=4.3039in]{media/image7.jpg}
+\end{quote}
+
+\textbf{CHAPTER 4}
+
+\section{Question No.4}\label{question-no.4}
+
+\subparagraph{Contingency Table}\label{contingency-table}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1254}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1713}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1098}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Drug}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{No Disease}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Disease}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Drug A
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+40
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+10
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Drug B
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+10
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+40
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Drug C
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+Table 4.1: Contingency table of disease status across different drugs
+
+\paragraph{4.0.1 Post-hoc Fisher Exact Test
+Results}\label{post-hoc-fisher-exact-test-results}
+
+Comparison: Drug A vs Drug B
+
+\begin{itemize}
+\item
+  Odds Ratio: 16.0
+\item
+  Raw p-value: 0.0
+\item
+  Adjusted p-value: 0.0
+\item
+  Result: Significant Difference
+\end{itemize}
+
+Comparison: Drug A vs Drug C
+
+\begin{itemize}
+\item
+  Odds Ratio: 4.0
+\item
+  Raw p-value: 0.00305
+\item
+  Adjusted p-value: 0.00916
+\item
+  Result: Significant Difference
+\end{itemize}
+
+Comparison: Drug B vs Drug C
+
+\begin{itemize}
+\item
+  Odds Ratio: 0.25
+\item
+  Raw p-value: 0.00305
+\item
+  Adjusted p-value: 0.00916
+\item
+  Result: Significant Difference
+\end{itemize}
+
+\textbf{CHAPTER 5}
+
+\section{Question No.5}\label{question-no.5}
+
+\textbf{Data description:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0913}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{admit}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{gre}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{gpa}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{rank}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+count
+\end{quote}
+\end{minipage} & 400.000000 & 400.000000 & 400.000000 & 400.000000 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+mean
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.317500
+\end{quote}
+\end{minipage} & 587.700000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.389900
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.485000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+std
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.466087
+\end{quote}
+\end{minipage} & 115.516536 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.380567
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.944446
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+min
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & 220.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.260000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25\%
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & 520.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.130000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+50\%
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & 580.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.395000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+75\%
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & 660.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.670000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+max
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & 800.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+4.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+4.000000
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\textbf{Logistic Regression Model Summary:}
+
+\subparagraph{Generalized Linear Model Regression
+Results}\label{generalized-linear-model-regression-results}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2511}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2187}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2998}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0942}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dep. Variable:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+admit
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{No. Observations:}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+400
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Model:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+GLM
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Residuals:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+394
+\end{quote}
+\end{minipage} \\
+\textbf{Model Family:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Binomial
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Model:}
+\end{quote}
+\end{minipage} & 5 \\
+\textbf{Link Function:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Logit
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Scale:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.0000
+\end{quote}
+\end{minipage} \\
+\textbf{Method:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+IRLS
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Log-Likelihood:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-229.26
+\end{quote}
+\end{minipage} \\
+\textbf{Date:} & Sat, 16 May 2026 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Deviance:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+458.52
+\end{quote}
+\end{minipage} \\
+\textbf{Time:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+11:18:09
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pearson chi2:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+397.
+\end{quote}
+\end{minipage} \\
+\textbf{No. Iterations:} & 4 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pseudo R-squ. (CS):}
+\end{quote}
+\end{minipage} & 0.09846 \\
+\textbf{Covariance Type:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+nonrobust
+\end{quote}
+\end{minipage} & & \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1441}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1074}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1134}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0942}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1025}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1028}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{coef}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{z}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\textbf{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Intercept
+\end{quote}
+\end{minipage} & -3.9900 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.140
+\end{quote}
+\end{minipage} & -3.500 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-6.224
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.756
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+rank{[}T.2{]}
+\end{quote}
+\end{minipage} & -0.6754 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.316
+\end{quote}
+\end{minipage} & -2.134 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.033
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.296
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.055
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+rank{[}T.3{]}
+\end{quote}
+\end{minipage} & -1.3402 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.345
+\end{quote}
+\end{minipage} & -3.881 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.017
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.663
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+rank{[}T.4{]}
+\end{quote}
+\end{minipage} & -1.5515 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.418
+\end{quote}
+\end{minipage} & -3.713 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.370
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.733
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+gre
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.0023
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.001
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.070
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.038
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.004
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+gpa
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.8040
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.332
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.423
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.015
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.154
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.454
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{Effect of Admission into Graduate School Using
+GLM}\label{effect-of-admission-into-graduate-school-using-glm}
+
+A Generalized Linear Model (GLM) with binomial family (logit link) was
+fitted to examine the effect of GRE score, GPA, and university ranking
+on the probability of admission into graduate school.
+
+\subparagraph{1. Overall Model
+Interpretation}\label{overall-model-interpretation}
+
+The fitted GLM model is statistically significant and indicates that the
+predictors jointly explain variation in graduate school admission.
+
+The pseudo \emph{R}\textsuperscript{2} value suggests that the model has
+moderate explanatory power. This implies that admission decisions are
+influenced by academic performance and institutional ranking, rather
+than being random.
+
+\begin{quote}
+\textbf{Conclusion:} The model is appropriate for explaining admission
+probability.
+\end{quote}
+
+\subparagraph{2. Effect of GRE Score}\label{effect-of-gre-score}
+
+The GRE score has a positive and statistically significant effect on
+admission probability (p \emph{\textless{}}
+
+0.05).
+
+This indicates that students with higher GRE scores are more likely to
+be admitted. However, the magnitude of the effect is relatively small.
+
+\begin{quote}
+\textbf{Interpretation:} GRE has a weak but positive influence on
+admission.
+\end{quote}
+
+\subparagraph{3. Effect of GPA}\label{effect-of-gpa}
+
+GPA shows a positive and statistically significant relationship with
+admission probability.
+
+This suggests that students with higher academic performance (GPA) have
+a significantly higher chance of being admitted.
+
+\begin{quote}
+\textbf{Interpretation:} GPA is a strong predictor of graduate school
+admission.
+\end{quote}
+
+\subparagraph{4. Effect of University
+Rank}\label{effect-of-university-rank}
+
+All university rank categories (Rank 2, Rank 3, Rank 4) have negative
+and statistically significant coefficients compared to Rank 1.
+
+\begin{quote}
+This implies that students from lower-ranked universities are less
+likely to be admitted.
+
+\textbf{Interpretation:} University ranking is a strong negative
+predictor of admission probability.
+\end{quote}
+
+\subparagraph{5. Intercept
+Interpretation}\label{intercept-interpretation}
+
+The negative intercept indicates that the baseline probability of
+admission is low when all predictors are at their reference or zero
+values.
+
+\subparagraph{Final Conclusion}\label{final-conclusion}
+
+Graduate school admission is significantly influenced by:
+
+\begin{itemize}
+\item
+  GPA (strong positive effect)
+\item
+  GRE score (weak positive effect)
+\item
+  University ranking (strong negative effect)
+\end{itemize}
+
+Overall, GPA and university ranking are the most important determinants
+of admission, while GRE contributes a smaller but significant effect.
+
+\textbf{CHAPTER 6}
+
+\section{Question No.6}\label{question-no.6}
+
+\textbf{Summary Statistics:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0913}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1817}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{id}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{num awards}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{prog}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{math}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+count
+\end{quote}
+\end{minipage} & 200.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+200.000000
+\end{quote}
+\end{minipage} & 200.000000 & 200.000000 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+mean
+\end{quote}
+\end{minipage} & 100.500000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.630000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.025000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+52.645000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+std
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+57.879185
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.052921
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.690477
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+9.368448
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+min
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+33.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25\%
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+50.750000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+45.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+50\%
+\end{quote}
+\end{minipage} & 100.500000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+52.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+75\%
+\end{quote}
+\end{minipage} & 150.250000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.250000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+59.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+max
+\end{quote}
+\end{minipage} & 200.000000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+6.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+75.000000
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{POISSON REGRESSION
+SUMMARY}\label{poisson-regression-summary}
+
+Generalized Linear Model Regression Results
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2537}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2173}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3047}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0837}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dep. Variable:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+num awards
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{No. Observations:}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+200
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Model:} & GLM & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Residuals:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+196
+\end{quote}
+\end{minipage} \\
+\textbf{Model Family:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Poisson
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Model:}
+\end{quote}
+\end{minipage} & 3 \\
+\textbf{Link Function:} & Log &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Scale:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.0000
+\end{quote}
+\end{minipage} \\
+\textbf{Method:} & IRLS & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Log-Likelihood:}
+\end{quote}
+\end{minipage} & -182.75 \\
+\textbf{Date:} & Sat, 16 May 2026 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Deviance:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+189.45
+\end{quote}
+\end{minipage} \\
+\textbf{Time:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+11:17:04
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pearson chi2:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+212.
+\end{quote}
+\end{minipage} \\
+\textbf{No. Iterations:} & 5 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pseudo R-squ. (CS):}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.3881
+\end{quote}
+\end{minipage} \\
+\textbf{Covariance Type:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+nonrobust
+\end{quote}
+\end{minipage} & & \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1434}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1074}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1134}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0942}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1025}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1028}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{coef}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{z}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\textbf{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Intercept
+\end{quote}
+\end{minipage} & -5.2471 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.658
+\end{quote}
+\end{minipage} & -7.969 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-6.538
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-3.957
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+prog{[}T.2{]}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.0839
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.358
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3.025
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.002
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.382
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.786
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+prog{[}T.3{]}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.3698
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.441
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.838
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.402
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.495
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.234
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+math
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.0702
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.011
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+6.619
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.049
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.091
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+INCIDENCE RATE RATIOS (IRR)
+
+\begin{quote}
+Intercept : 0\emph{.}005263 prog{[}T.2{]} : 2\emph{.}956065
+
+prog{[}T.3{]} : 1\emph{.}447458 math : 1\emph{.}072672
+
+dtype : float64
+\end{quote}
+
+PREDICTED NUMBER OF AWARDS
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2367}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2304}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{num awards}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{Predicted Count}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 0 & 0.135191 \\
+1 0 & 0.093399 \\
+2 0 & 0.166858 \\
+3 0 & 0.145016 \\
+4 0 & 0.126032 \\
+5 0 & 0.100186 \\
+6 0 & 0.191991 \\
+7 0 & 0.126032 \\
+8 0 & 0.077128 \\
+9 0 & 0.191991 \\
+\end{longtable}
+}
+
+INTERPRETATION
+
+\begin{itemize}
+\item
+  Intercept → p-value = 0\emph{.}0000 → Statistically Significant
+\item
+  prog{[}T.2{]} → p-value = 0\emph{.}0025 → Statistically Significant
+\item
+  prog{[}T.3{]} → p-value = 0\emph{.}4018 → Not Significant
+\item
+  math → p-value = 0\emph{.}0000 → Statistically Significant
+\end{itemize}
+
+\textbf{Conclusion:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Math score has a positive effect on the number of awards earned.
+\item
+  Students in different academic programs earn different numbers of
+  awards.
+\item
+  Significant predictors (\emph{p \textless{}} 0\emph{.}05) strongly
+  influence award counts.
+\item
+  IRR \emph{\textgreater{}} 1 indicates increased expected award counts.
+\item
+  IRR \emph{\textless{}} 1 indicates decreased expected award counts.
+\end{enumerate}
+
+\textbf{CHAPTER 7}
+
+\section{Question No.7}\label{question-no.7}
+
+\textbf{Summary Statistics:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0913}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1519}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{id}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{math}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{daysabs}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{prog}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+count
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+314.000000
+\end{quote}
+\end{minipage} & 314.000000 & 314.000000 & 314.000000 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+mean
+\end{quote}
+\end{minipage} & 1575.910889 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+48.267517
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+5.955414
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.213376
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+std
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+502.314789
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25.362385
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+7.036952
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.651132
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+min
+\end{quote}
+\end{minipage} & 1001.000000 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+25\%
+\end{quote}
+\end{minipage} & 1079.250000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+28.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+50\%
+\end{quote}
+\end{minipage} & 1158.500000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+48.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+4.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+2.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+75\%
+\end{quote}
+\end{minipage} & 2077.750000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+70.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+8.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.000000
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+max
+\end{quote}
+\end{minipage} & 2157.000000 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+99.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+35.000000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+3.000000
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{NEGATIVE BINOMIAL MODEL
+SUMMARY}\label{negative-binomial-model-summary}
+
+Generalized Linear Model Regression Results
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2534}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2277}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2971}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0837}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dep. Variable:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+daysabs
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{No. Observations:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+314
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Model:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+GLM
+\end{quote}
+\end{minipage} & \textbf{Df Residuals:} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+310
+\end{quote}
+\end{minipage} \\
+\textbf{Model Family:} & NegativeBinomial & \textbf{Df Model:} & 3 \\
+\textbf{Link Function:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Log
+\end{quote}
+\end{minipage} & \textbf{Scale:} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.0000
+\end{quote}
+\end{minipage} \\
+\textbf{Method:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+IRLS
+\end{quote}
+\end{minipage} & \textbf{Log-Likelihood:} & -865.68 \\
+\textbf{Date:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Sat, 16 May 2026
+\end{quote}
+\end{minipage} & \textbf{Deviance:} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+350.98
+\end{quote}
+\end{minipage} \\
+\textbf{Time:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+11:16:20
+\end{quote}
+\end{minipage} & \textbf{Pearson chi2:} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+331.
+\end{quote}
+\end{minipage} \\
+\textbf{No. Iterations:} & 6 & \textbf{Pseudo R-squ. (CS):} &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.1926
+\end{quote}
+\end{minipage} \\
+\textbf{Covariance Type:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+nonrobust
+\end{quote}
+\end{minipage} & & \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1637}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1074}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1134}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0988}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1024}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1027}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{coef}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{z}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\textbf{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Intercept
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.6150
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.200
+\end{quote}
+\end{minipage} & 13.054 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.222
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3.008
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+prog{[}T.2.0{]}
+\end{quote}
+\end{minipage} & -0.4408 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.185
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.379
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.017
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.804
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.078
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+prog{[}T.3.0{]}
+\end{quote}
+\end{minipage} & -1.2786 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.203
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-6.284
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.677
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.880
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+math
+\end{quote}
+\end{minipage} & -0.0060 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.003
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.358
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.018
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.011
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.001
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{INCIDENCE RATE RATIOS
+(IRR)}\label{incidence-rate-ratios-irr-1}
+
+\begin{quote}
+Intercept : 13\emph{.}667374 prog{[}T.2.0{]} : 0\emph{.}643551
+
+prog{[}T.3.0{]} : 0\emph{.}278418 math : 0\emph{.}994030
+
+dtype : float64
+\end{quote}
+
+\subparagraph{PREDICTED DAYS OF
+ABSENCE}\label{predicted-days-of-absence}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1799}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2580}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{daysabs}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{Predicted Absence}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 4.0 & 6.031800 \\
+1 4.0 & 7.482714 \\
+2 2.0 & 7.802998 \\
+3 3.0 & 7.992136 \\
+4 3.0 & 8.690957 \\
+5 13.0 & 5.749687 \\
+6 11.0 & 6.031800 \\
+7 7.0 & 8.639075 \\
+8 10.0 & 6.481134 \\
+9 9.0 & 2.837692 \\
+\end{longtable}
+}
+
+\subparagraph{INTERPRETATION}\label{interpretation-1}
+
+\begin{itemize}
+\item
+  Intercept → p-value = 0\emph{.}0000 → Statistically Significant
+\item
+  prog{[}T.2.0{]} → p-value = 0\emph{.}0174 → Statistically Significant
+\item
+  prog{[}T.3.0{]} → p-value = 0\emph{.}0000 → Statistically Significant
+\item
+  math → p-value = 0\emph{.}0184 → Statistically Significant
+\end{itemize}
+
+\textbf{Conclusion:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Math score significantly affects student absenteeism.
+\item
+  Different academic programs are associated with different absence
+  rates.
+\item
+  Significant predictors (\emph{p \textless{}} 0\emph{.}05) strongly
+  influence the number of absent days.
+\item
+  IRR \emph{\textgreater{}} 1 means increased absence rate.
+\item
+  IRR \emph{\textless{}} 1 means decreased absence rate.
+\item
+  Negative Binomial Regression is appropriate because count data.
+\end{enumerate}
+
+\textbf{CHAPTER 8}
+
+\section{Question No.8}\label{question-no.8}
+
+\subparagraph{Zero-Inflated Poisson Regression
+Results}\label{zero-inflated-poisson-regression-results}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2547}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2353}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2780}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1606}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dep. Variable:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{No. Observations:}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+250
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Model:} & ZeroInflatedPoisson &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Residuals:}
+\end{quote}
+\end{minipage} & 245 \\
+\textbf{Method:} & MLE & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Model:}
+\end{quote}
+\end{minipage} & 4 \\
+\textbf{Date:} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Sat, 16 May 2026
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pseudo R-squ.:}
+\end{quote}
+\end{minipage} & 0.3679 \\
+\textbf{Time:} & 11:15:42 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Log-Likelihood:}
+\end{quote}
+\end{minipage} & -712.41 \\
+\textbf{converged:} & True & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{LL-Null:}
+\end{quote}
+\end{minipage} & -1127.0 \\
+\textbf{Covariance Type:} & nonrobust &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{LLR p-value:}
+\end{quote}
+\end{minipage} & 3\emph{.}589 × 10\textsuperscript{−178} \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2027}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1077}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1142}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1076}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1027}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1031}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{coef}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{z}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\textbf{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+inflate const
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.8334
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.207
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.691
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.490
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.532
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+3.198
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+inflate persons
+\end{quote}
+\end{minipage} & -0.9312 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.210
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-4.441
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.342
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.520
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+inflate child
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.9586
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.344
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5.699
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.285
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.632
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+inflate camper
+\end{quote}
+\end{minipage} & -0.8717 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.370
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.357
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.018
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.597
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.147
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+inflate livebait
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.7412
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+1.120
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.662
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.508
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.453
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.936
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+const
+\end{quote}
+\end{minipage} & -2.4521 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.275
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-8.924
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.991
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.914
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+persons
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.8364
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.042
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+19.803
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.754
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.919
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+child
+\end{quote}
+\end{minipage} & -1.1806 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.091
+\end{quote}
+\end{minipage} & -12.968 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.359
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.002
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+camper
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.5971
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.092
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+6.461
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.416
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.778
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+livebait
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.8189
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.241
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+7.541
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.346
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.292
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{Zero-Inflated Poisson Regression: Factors Affecting Number
+of
+Awards}\label{zero-inflated-poisson-regression-factors-affecting-number-of-awards}
+
+A Zero-Inflated Poisson (ZIP) regression model was fitted to identify
+the factors associated with the number of awards earned by students in a
+high school. The model accounts for excess zeros and over-dispersion in
+the count data.
+
+\subparagraph{1. Overall Model Fit}\label{overall-model-fit}
+
+The model shows a strong statistical fit:
+
+\begin{itemize}
+\item
+  The log-likelihood value is high in magnitude, indicating good model
+  performance.
+\item
+  The likelihood ratio test is highly significant (\emph{p \textless{}}
+  0\emph{.}001), confirming that the predictors jointly explain
+  variation in the number of awards.
+\item
+  The pseudo \emph{R}\textsuperscript{2} value (0.3679) suggests a
+  moderate-to-strong explanatory power.
+\end{itemize}
+
+\begin{quote}
+\textbf{Conclusion:} The model fits the data well and is statistically
+significant.
+\end{quote}
+
+\subparagraph{2. Count Model Interpretation (Number of
+Awards)}\label{count-model-interpretation-number-of-awards}
+
+The count component explains how predictors affect the number of awards
+directly.
+
+Significant Positive Effects
+
+\begin{itemize}
+\item
+  \textbf{Persons (coef = 0.8364, p ¡ 0.001):} Students with more
+  persons (support/participation variable) tend to earn significantly
+  more awards.
+\item
+  \textbf{Camper (coef = 0.5971, p ¡ 0.001):} Participation as a camper
+  increases the expected number of awards.
+\item
+  \textbf{Livebait (coef = 1.8189, p ¡ 0.001):} Students involved in
+  livebait activities have a strong positive effect on awards earned.
+\end{itemize}
+
+Significant Negative Effects
+
+\begin{quote}
+• \textbf{Child (coef = -1.1806, p ¡ 0.001):} Having more children is
+associated with a lower number of awards.
+\end{quote}
+
+\subparagraph{3. Zero-Inflation Model
+Interpretation}\label{zero-inflation-model-interpretation}
+
+The inflation part explains excess zeros (students with zero awards).
+
+\begin{itemize}
+\item
+  \textbf{Child (positive and significant):} increases probability of
+  being in the zero-award group.
+\item
+  \textbf{Persons and Camper (negative coefficients):} reduce the
+  probability of being a structural zero, meaning they help students
+  move away from zero awards.
+\end{itemize}
+
+\subparagraph{4. Key Findings}\label{key-findings}
+
+\begin{itemize}
+\item
+  The most influential positive predictor of awards is \textbf{Livebait
+  participation}.
+\item
+  \textbf{Camper status} and \textbf{Persons variable} also
+  significantly increase award counts.
+\item
+  \textbf{Child variable} reduces award counts and increases the chance
+  of zero awards.
+\end{itemize}
+
+\subparagraph{Final Conclusion}\label{final-conclusion-1}
+
+The number of awards earned by students is significantly influenced by
+participation-related variables. Students engaged in structured
+activities such as camping and livebait programs tend to earn more
+awards, while the presence of competing responsibilities (e.g.,
+child-related factor) reduces academic achievement in terms of awards.
+
+\textbf{CHAPTER 9}
+
+\section{Question No.9}\label{question-no.9}
+
+\subparagraph{Generalized Linear Model Regression
+Results}\label{generalized-linear-model-regression-results-3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2537}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2075}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3145}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0837}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dep. Variable:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+fish caught
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{No. Observations:}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+250
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Model:} & GLM & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Residuals:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+245
+\end{quote}
+\end{minipage} \\
+\textbf{Model Family:} & Binomial &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Model:}
+\end{quote}
+\end{minipage} & 4 \\
+\textbf{Link Function:} & Logit &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Scale:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.0000
+\end{quote}
+\end{minipage} \\
+\textbf{Method:} & IRLS & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Log-Likelihood:}
+\end{quote}
+\end{minipage} & -123.83 \\
+\textbf{Date:} & Sat, 16 May 2026 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Deviance:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+247.67
+\end{quote}
+\end{minipage} \\
+\textbf{Time:} & 19:25:22 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pearson chi2:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+231.
+\end{quote}
+\end{minipage} \\
+\textbf{No. Iterations:} & 5 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pseudo R-squ. (CS):}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.3141
+\end{quote}
+\end{minipage} \\
+\textbf{Covariance Type:} & nonrobust & & \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1246}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1074}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1133}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0941}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1024}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1027}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{coef}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{z}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\textbf{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+const
+\end{quote}
+\end{minipage} & -3.1728 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.648
+\end{quote}
+\end{minipage} & -4.895 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-4.444
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.902
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+persons
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.1529
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.197
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5.851
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.767
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.539
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+child
+\end{quote}
+\end{minipage} & -2.2203 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.323
+\end{quote}
+\end{minipage} & -6.871 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.854
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.587
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+camper
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.9530
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.327
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.910
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.004
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.311
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.595
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+livebait
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.9768
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.487
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.006
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.045
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.023
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.931
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\subparagraph{INTERPRETATION}\label{interpretation-2}
+
+\begin{quote}
+const : −3\emph{.}1728 persons : 1\emph{.}1529 child : −2\emph{.}2203
+camper : 0\emph{.}9530
+
+livebait : 0\emph{.}9768
+\end{quote}
+
+\textbf{Conclusion:}
+
+\begin{itemize}
+\item
+  Probability of catching fish increases with persons, camper, and
+  livebait.
+\item
+  Child has a negative effect on fishing success.
+\end{itemize}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2537}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2075}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3145}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0837}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dep. Variable:}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+fish caught
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{No. Observations:}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+250
+\end{quote}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Model:} & GLM & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Residuals:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+245
+\end{quote}
+\end{minipage} \\
+\textbf{Model Family:} & Binomial &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Df Model:}
+\end{quote}
+\end{minipage} & 4 \\
+\textbf{Link Function:} & Logit &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Scale:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.0000
+\end{quote}
+\end{minipage} \\
+\textbf{Method:} & IRLS & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Log-Likelihood:}
+\end{quote}
+\end{minipage} & -123.83 \\
+\textbf{Date:} & Sat, 16 May 2026 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Deviance:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+247.67
+\end{quote}
+\end{minipage} \\
+\textbf{Time:} & 19:25:22 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pearson chi2:}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+231.
+\end{quote}
+\end{minipage} \\
+\textbf{No. Iterations:} & 5 &
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Pseudo R-squ. (CS):}
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.3141
+\end{quote}
+\end{minipage} \\
+\textbf{Covariance Type:} & nonrobust & & \\
+\end{longtable}
+}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1246}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1074}}
+  >{\centering\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1133}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0941}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1024}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1027}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{coef}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{std err}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\begin{quote}
+\textbf{z}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{P}\emph{\textgreater{}} \textbar{}\textbf{z}\textbar{}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{{[}0.025}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{0.975{]}}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+const
+\end{quote}
+\end{minipage} & -3.1728 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.648
+\end{quote}
+\end{minipage} & -4.895 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-4.444
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.902
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+persons
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.1529
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.197
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+5.851
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.767
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.539
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+child
+\end{quote}
+\end{minipage} & -2.2203 & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.323
+\end{quote}
+\end{minipage} & -6.871 & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.000
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-2.854
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-1.587
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+camper
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.9530
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.327
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.910
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.004
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.311
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.595
+\end{quote}
+\end{minipage} \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+livebait
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.9768
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\centering
+\begin{quote}
+0.487
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+2.006
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.045
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.023
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.931
+\end{quote}
+\end{minipage} \\
+\end{longtable}
+}
+
+\textbf{Generalized Linear Model Regression Results}
+
+\subparagraph{Model Interpretation}\label{model-interpretation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The model indicates that an increase in the number of people
+  (\emph{persons}) in the group significantly increases the likelihood
+  or success rate of catching fish.
+\item
+  The presence of a \emph{child} in the group has a significant negative
+  impact on fishing success, noticeably decreasing the probability of
+  catching fish.
+\item
+  Both being a \emph{camper} and utilizing \emph{livebait} act as
+  statistically significant positive predictors, substantially boosting
+  the chances of a successful catch.
+\item
+  Based on the coefficients, the presence of children carries the
+  strongest overall effect in the model but in a negative direction
+  (coef: -2.2203), presenting a primary obstacle to fishing success.
+\item
+  Overall, larger group sizes, choosing to camp, and employing live bait
+  serve as highly effective factors for maximizing the probability of
+  catching fish.
+\end{enumerate}
+
+\textbf{CHAPTER 10}
+
+\section{Question No.10}\label{question-no.10}
+
+\subparagraph{Zero-Truncated Negative Binomial Regression
+Results}\label{zero-truncated-negative-binomial-regression-results}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3192}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2535}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3783}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Variable / Parameter}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coefficient (coef)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{Incidence Rate Ratio (IRR)}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Intercept (const)
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+1.02185188
+\end{quote}
+\end{minipage} & 2.77833516 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Variable 1
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.00229098
+\end{quote}
+\end{minipage} & 0.99771164 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Variable 2
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.01695145
+\end{quote}
+\end{minipage} & 0.98319141 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Variable 3
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.03037454
+\end{quote}
+\end{minipage} & 0.97008213 \\
+\end{longtable}
+}
+
+\subparagraph{Model Interpretation and Estimation
+Analysis}\label{model-interpretation-and-estimation-analysis}
+
+1. Analysis of Coefficients (\emph{β})
+
+\begin{quote}
+The coefficients indicate the directional relationship between the
+independent variables and the expected log count of the dependent
+variable:
+\end{quote}
+
+\begin{itemize}
+\item
+  \textbf{Intercept (}1\emph{.}0219\textbf{):} The baseline log count
+  when all independent variables are held at zero.
+\item
+  \textbf{Variables 1, 2, and 3 (}−0\emph{.}0023\textbf{,}
+  −0\emph{.}0169\textbf{, and} −0\emph{.}0304\textbf{):} All three
+  independent variables display negative coefficients. This
+  systematically indicates that as any of these variable values
+  increase, the expected count of the dependent variable (e.g., days
+  spent in the hospital) decreases.
+\end{itemize}
+
+2. Analysis of Incidence Rate Ratios (IRR)
+
+\begin{quote}
+The Incidence Rate Ratio is calculated by exponentiating the coefficient
+(\emph{e\textsuperscript{β}}). It tells us the multiplicative effect of
+a one-unit change in a predictor variable on the expected rate or count:
+\end{quote}
+
+\begin{itemize}
+\item
+  \textbf{Intercept (IRR} = 2\emph{.}7783\textbf{):} Represents the
+  expected baseline count of the event when all predictors are zero.
+\item
+  \textbf{Variable 1 (IRR} = 0\emph{.}9977\textbf{):} A one-unit
+  increase in Variable 1 is associated with a 0\emph{.}23\% decrease in
+  the expected count (1 − 0\emph{.}9977 = 0\emph{.}0023), holding all
+  other variables constant. This effect is extremely minimal.
+\item
+  \textbf{Variable 2 (IRR} = 0\emph{.}9832\textbf{):} A one-unit
+  increase in Variable 2 results in a 1\emph{.}68\% decrease in the
+  expected count (1 − 0\emph{.}9832 = 0\emph{.}0168).
+\item
+  \textbf{Variable 3 (IRR} = 0\emph{.}9701\textbf{):} A one-unit
+  increase in Variable 3 results in a 2\emph{.}99\% decrease in the
+  expected count (1−0\emph{.}9701 = 0\emph{.}0299). Variable 3 shows the
+  strongest reductive impact among the predictors.
+\end{itemize}
+
+\textbf{CHAPTER 11}
+
+\section{Question NO.11}\label{question-no.11}
+
+\subparagraph{Zero-Truncated Poisson Regression
+Results}\label{zero-truncated-poisson-regression-results}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3192}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2535}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3783}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Variable / Parameter}
+\end{quote}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coefficient (coef)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+\textbf{Incidence Rate Ratio (IRR)}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Intercept (const)
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.44748491
+\end{quote}
+\end{minipage} & 1.56437270 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Variable 1
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.01218667
+\end{quote}
+\end{minipage} & 1.01226126 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Variable 2
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+-0.30134211
+\end{quote}
+\end{minipage} & 0.73982462 \\
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+Variable 3
+\end{quote}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+0.71647022
+\end{quote}
+\end{minipage} & 2.04719430 \\
+\end{longtable}
+}
+
+\subparagraph{Statistical Model Estimation and
+Interpretation}\label{statistical-model-estimation-and-interpretation}
+
+1. Analysis of Coefficients (\emph{β})
+
+\begin{quote}
+The regression coefficients quantify the expected change in the
+log-transformed count profile of the dependent outcome per unit shift
+across your set of predictors:
+\end{quote}
+
+\begin{itemize}
+\item
+  \textbf{Intercept (}0\emph{.}4475\textbf{):} This represents the
+  expected baseline log count benchmark context when all concurrent
+  explanatory factors rest at zero.
+\item
+  \textbf{Variable 1 (}0\emph{.}0122\textbf{):} Possesses a slight
+  positive coefficient directional signal, meaning an upward change in
+  this indicator subtly correlates with an escalation in the final
+  counted score.
+\item
+  \textbf{Variable 2 (}−0\emph{.}3013\textbf{):} Carries a distinct
+  negative coefficient value. This isolates a clear inverse
+  configuration; higher input steps on Variable 2 translate directly to
+  an expected contraction of the primary counter value.
+\item
+  \textbf{Variable 3 (}0\emph{.}7165\textbf{):} Holds a prominent
+  positive coefficient magnitude, marking it out as a principal
+  systematic driver that significantly increases the calculated volume
+  metric under study.
+\end{itemize}
+
+2. Analysis of Incidence Rate Ratios (IRR)
+
+\begin{quote}
+The Incidence Rate Ratio metrics are obtained via exponentiation
+(\emph{e\textsuperscript{β}}) to reflect a cleaner, direct
+multiplicative percentage modification vector relative to rate/count
+structures:
+\end{quote}
+
+\begin{itemize}
+\item
+  \textbf{Intercept (IRR} = 1\emph{.}5644\textbf{):} Evaluates the
+  operational starting rate coefficient index baseline.
+\item
+  \textbf{Variable 1 (IRR} = 1\emph{.}0123\textbf{):} A singular step
+  forward along this dimension corresponds with a minor 1\emph{.}23\%
+  incremental increase (1\emph{.}0123 − 1 = 0\emph{.}0123) across the
+  expected accumulation scale.
+\item
+  \textbf{Variable 2 (IRR} = 0\emph{.}7398\textbf{):} A single-unit
+  addition yields a pronounced 26\emph{.}02\% net reduction (1 −
+  0\emph{.}7398 = 0\emph{.}2602) over total calculated observation
+  cycles, identifying its core role as an inhibiting variable.
+\item
+  \textbf{Variable 3 (IRR} = 2\emph{.}0472\textbf{):} A one-unit
+  structural advancement here pushes a major shift, effectively
+  expanding the anticipated overall frequency occurrence rate by
+  104\emph{.}72\% (over doubling the original baseline expectations).
+\end{itemize}
+
+\textbf{CHAPTER 12}
+
+\section{Python Code}\label{python-code}
+
+``\,`latex
+
+\subsubsection{12.1 Code for Question 2}\label{code-for-question-2}
+
+\includegraphics[width=6.7in,height=7.30333in]{media/image8.png}
+
+\includegraphics[width=6.74333in,height=10.10667in]{media/image9.png}
+
+\subsubsection{12.2 Code for Question 3}\label{code-for-question-3}
+
+\includegraphics[width=6.7in,height=8.77333in]{media/image10.png}
+
+\includegraphics[width=6.74333in,height=10.10667in]{media/image11.png}
+
+\includegraphics[width=6.74333in,height=4.04in]{media/image12.png}
+
+\subsubsection{12.3 Code for Question 4}\label{code-for-question-4}
+
+\includegraphics[width=6.70667in,height=10.09333in]{media/image13.png}
+
+\includegraphics[width=6.75in,height=6.30667in]{media/image14.png}
+
+\begin{quote}
+``\,`latex id=''g5k9ta''
+\end{quote}
+
+\subsubsection{12.4 Code for Question 5}\label{code-for-question-5}
+
+\includegraphics[width=6.70667in,height=10.09333in]{media/image15.png}
+
+\subsubsection{12.5 Code for Question 6}\label{code-for-question-6}
+
+\includegraphics[width=6.70667in,height=8.11333in]{media/image16.png}
+
+\includegraphics[width=6.75in,height=10.09333in]{media/image17.png}
+
+\includegraphics[width=6.75in,height=10.09333in]{media/image18.png}
+
+\subsubsection{12.6 Code for Question 7}\label{code-for-question-7}
+
+\includegraphics[width=6.70667in,height=6.95333in]{media/image19.png}
+
+\includegraphics[width=6.70667in,height=10.09333in]{media/image20.png}
+
+\includegraphics[width=6.75in,height=10.09333in]{media/image21.png}
+
+\includegraphics[width=6.75in,height=4.18667in]{media/image22.png}
+
+\subsection{12.7 Code for Question 8}\label{code-for-question-8}
+
+\includegraphics[width=6.70667in,height=5.01667in]{media/image23.png}
+
+\includegraphics[width=6.70667in,height=10.09333in]{media/image24.png}
+
+\includegraphics[width=6.75in,height=3.86in]{media/image25.png}
+
+\subsection{12.8 Code for Question 9}\label{code-for-question-9}
+
+\includegraphics[width=6.70667in,height=5.32333in]{media/image26.png}
+
+\includegraphics[width=6.70667in,height=10.09333in]{media/image27.png}
+
+\subsection{12.9 Code for Question 10}\label{code-for-question-10}
+
+\includegraphics[width=6.70667in,height=8.27667in]{media/image28.png}
+
+\includegraphics[width=6.75in,height=10.09333in]{media/image29.png}
+
+\includegraphics[width=6.75in,height=9.73333in]{media/image30.png}
+
+\subparagraph{12.10 Code for Question 11}\label{code-for-question-11}
+
+\includegraphics[width=6.70667in,height=9.56333in]{media/image31.png}
+
+\includegraphics[width=6.75in,height=10.09333in]{media/image32.png}
+
+\includegraphics[width=6.75in,height=10.09333in]{media/image33.png}
